@@ -47,6 +47,7 @@ function addFruit(e){
   alert('Add a Fruit');
 }
 // create list items
+  else{
 const li =document.createElement('li');
 li.className = 'collection-item';
 li.appendChild(document.createTextNode(fruitinput.value)) ;
@@ -65,7 +66,7 @@ storeTaskInLocalStorage(fruitinput.value)
 fruitinput.value = '';
 e.preventDefault();
 }
-
+}
 function storeTaskInLocalStorage(fruit) {
   let fruits;
   if(localStorage.getItem('fruits') === null)
