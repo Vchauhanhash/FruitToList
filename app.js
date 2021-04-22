@@ -3,7 +3,7 @@ const fruitList = document.querySelector(".collection")
 const clrbtn = document.querySelector(".clear-tasks")
 const filter = document.querySelector("#filter")
 const fruitinput = document.querySelector("#fruit")
-
+const inputfield = document.querySelector(".input-field")
 loadEventListener();
 
 function loadEventListener() {
@@ -43,11 +43,28 @@ fruitList.appendChild(li);
 }
 
 function addFruit(e){
-  if(fruitinput.value === ''){
-  alert('Add a Fruit');
+  if(fruitinput.value ===''){
+   var text = "**Input Required";
+  var t = document.getElementById('para')
+  t.innerHTML=text; 
+  return false
 }
+
+//Specialchar
+
+
+ if (/^[a-zA-Z0-9- ,_]*$/.test(fruitinput.value) == false){
+  var st = "**Input is not valid No Special Character allowed(/*-+!@#$%^&*) ";
+  var input = document.getElementById('para')
+  input.innerHTML=st;
+  fruitinput.value=''
+}
+
+
 // create list items
-  else{
+else
+{
+
 const li =document.createElement('li');
 li.className = 'collection-item';
 li.appendChild(document.createTextNode(fruitinput.value)) ;
@@ -57,15 +74,18 @@ link.className = 'delete-item secondary-content' ;
 link.innerHTML = '<i class="fa fa-remove"></i>';
 li.appendChild(link);
  
-console.log(li);
+//console.log(li);
 
 fruitList.appendChild(li);
 //store to local storage
 storeTaskInLocalStorage(fruitinput.value)
  
 fruitinput.value = '';
-e.preventDefault();
+var input = document.getElementById('para')
+input.innerHTML='';
 }
+e.preventDefault();
+
 }
 function storeTaskInLocalStorage(fruit) {
   let fruits;
@@ -136,3 +156,33 @@ function filterList(e){
     });
 
 }
+
+
+
+//ODD OR EVEN REMOVE_FRUIT
+   
+const lis = document.getElementById('ls').children;
+//const listChildren = lis.children
+console.log(lis)
+for( i = 0; i <= lis.length; i++) 
+{
+  if(i%2==0){
+    console.log(i)
+  }
+}
+
+//console.log(lis);     
+
+
+
+ // var str= arr.value 
+  
+  //var secondChild = document.querySelectorAll('.collection li:nth-child(2)');
+  //console.log(secondChild)
+ 
+  // var myList = document.getElementsByClassName('collection'); 
+  //  var myListItems = document.querySelector('li');
+  //  for(var i=0; i<myListItems.length(); ++i){
+  //   console.log(myListItems[i]);
+  //  } 
+  
