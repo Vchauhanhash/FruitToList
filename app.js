@@ -43,21 +43,23 @@ fruitList.appendChild(li);
 }
 
 function addFruit(e){
+ 
   if(fruitinput.value ===''){
    var text = "**Input Required";
-  var t = document.getElementById('para')
-  t.innerHTML=text; 
-  return false
+  var input = document.getElementById('para')
+  input.innerHTML=text; 
+
 }
 
 //Specialchar
 
 
- if (/^[a-zA-Z0-9- ,_]*$/.test(fruitinput.value) == false){
+ else if (/^[a-zA-Z0-9- ,_]*$/.test(fruitinput.value) == false){
   var st = "**Input is not valid No Special Character allowed(/*-+!@#$%^&*) ";
   var input = document.getElementById('para')
   input.innerHTML=st;
-  fruitinput.value=''
+  // fruitinput.value=''
+
 }
 
 
@@ -161,18 +163,26 @@ function filterList(e){
 
 //ODD OR EVEN REMOVE_FRUIT
    
-const lis = document.getElementById('ls').children;
-//const listChildren = lis.children
-console.log(lis)
-for( i = 0; i <= lis.length; i++) 
-{
-  if(i%2==0){
-    console.log(i)
-  }
-}
+// const lis = document.getElementById('ls').children;
+// //const listChildren = lis.children
+// console.log(lis)
+// for( i = 0; i <= lis.length; i++) 
+// {
+//   if(i%2==0){
+//     console.log(i)
+//   }
+// }
 
 //console.log(lis);     
-
+let li = document.querySelectorAll('li:nth-child(odd)');
+let li_array =Array.from(li);
+//console.log(li.text);
+li_array.forEach(function(e){
+  e.addEventListener('click',function(){
+    console.log(this.textContent)
+  })
+  
+})
 
 
  // var str= arr.value 
