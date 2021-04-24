@@ -4,6 +4,9 @@ const clrbtn = document.querySelector(".clear-tasks")
 const filter = document.querySelector("#filter")
 const fruitinput = document.querySelector("#fruit")
 const inputfield = document.querySelector(".input-field")
+const clrodd = document.querySelector(".clear-odd")
+const clreven = document.querySelector(".clear-even")
+
 loadEventListener();
 
 function loadEventListener() {
@@ -14,6 +17,10 @@ function loadEventListener() {
   clrbtn.addEventListener('click', clearFruit);
 
   filter.addEventListener('keyup',filterList);
+ 
+  clrodd.addEventListener('click',clearOdd);
+ 
+  clreven.addEventListener('click',clearEven);
   
   document.addEventListener('DOMContentLoaded', getfruits)
 }
@@ -25,10 +32,10 @@ function getfruits(){
     fruits=[]
   }
   else{
-    fruits = JSON.parse(localStorage.getItem('fruits'));
+  fruits = JSON.parse(localStorage.getItem('fruits'));
   }
   fruits.forEach(function(fruits){
-    const li =document.createElement('li');
+  const li =document.createElement('li');
 li.className = 'collection-item';
 li.appendChild(document.createTextNode(fruits)) ;
 
@@ -39,7 +46,7 @@ li.appendChild(link);
 
 fruitList.appendChild(li);
 
-  })
+  });
 }
 
 function addFruit(e){
@@ -69,6 +76,7 @@ else
 
 const li =document.createElement('li');
 li.className = 'collection-item';
+li.id ='f-it';
 li.appendChild(document.createTextNode(fruitinput.value)) ;
 
 let link = document.createElement('a');
@@ -158,6 +166,97 @@ function filterList(e){
     });
 
 }
+function clearOdd(){
+  var selected = document.querySelectorAll("li:nth-child(odd)");
+  selected.forEach(function(item) {
+    console.log(item.innerText);
+   while(item.parentElement){
+     item.remove(item.parentElement);
+     }
+     removeOddFromLocalStorage(item)
+   }) 
+  }
+function removeOddFromLocalStorage(item){
+  fruits = JSON.parse(localStorage.getItem('fruits'));
+  fruits.forEach(function(fruit){
+    if(item.innerText == fruit)
+    {                
+   var ind = fruits.indexOf(fruit)
+   //fruits.splice(item)
+   //var del_fruit = delete fruits[ind]
+    //console.log( del_fruit)
+   // console.log(fruits)
+    console.log(ind)
+    console.log(fruits.splice(ind,1))
+
+   // arrayRemove(fruits,fruit)
+//console.log(arrayRemove(fruits,fruit))
+      // console.log(localStorage.removeItem('fruit'));
+      // localStorage.removeItem('fruits[ind]')
+    
+    }
+  
+  })
+  localStorage.setItem('fruits',JSON.stringify(fruits));
+
+  }
+
+//   function arrayRemove(arr, value) { 
+    
+//     return arr.filter(function(ele){ 
+//         return ele != value; 
+//     });
+// }
+
+
+  //localStorage.setItem('fruits'.JSON.stringify(fruits))
+   
+//}
+  // var nSelect = document.querySelectorAll("li");
+  // nSelect.forEach(function(item) {
+  //   console.log(item.innerText);
+  //   it=item.innerText
+  //   localStorage.setItem('fruits',JSON.stringify(it))
+//})  }
+
+    // function removeOddFromLocalStorage(fruitItem){
+   
+    //  let fruits;
+    //    fruits = JSON.parse(localStorage.getItem('fruits'));
+   
+    //   localStorage.clear();
+    // }
+
+  
+  
+
+
+function clearEven(){
+  var selected = document.querySelectorAll("li:nth-child(even)");
+  selected.forEach(function(item) {
+    console.log(item.innerText);
+    while(item.parentElement){
+      item.remove(item.parentElement);
+  
+  }
+  removeEvenFromLocalStorage(item)
+  });
+}
+function removeEvenFromLocalStorage(item){
+  fruits = JSON.parse(localStorage.getItem('fruits'));
+  fruits.forEach(function(fruit){
+    if(item.innerText == fruit)
+    {                
+   var ind = fruits.indexOf(fruit)
+
+    console.log(ind)
+    console.log(fruits.splice(ind,1))    
+    }
+  
+  })
+  localStorage.setItem('fruits',JSON.stringify(fruits));
+
+  }
 
 
 
@@ -174,16 +273,6 @@ function filterList(e){
 // }
 
 //console.log(lis);     
-let li = document.querySelectorAll('li:nth-child(odd)');
-let li_array =Array.from(li);
-//console.log(li.text);
-li_array.forEach(function(e){
-  e.addEventListener('click',function(){
-    console.log(this.textContent)
-  })
-  
-})
-
 
  // var str= arr.value 
   
